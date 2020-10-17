@@ -1,0 +1,28 @@
+.custom-select {
+  font-family: system-ui;
+  text-align: center;
+  padding: initial;
+  display: unset;
+}
+#color {
+  font-family: system-ui;
+  border-radius: 8px;
+  font-size: 28px;
+  border: 2px solid black;
+  margin: 10px 10px 10px 10px;
+}
+#radius {
+  font-family: system-ui;
+  border-radius: 8px;
+  font-size: 28px;
+  border: 2px solid black;
+  margin: 10px 10px 10px 10px;
+}
+
+.button {
+  font-family: system-ui;
+  border-radius: 8px;
+  font-size: 28px;
+  border: 2px solid black;
+  margin: 10px 10px 10px 10px;
+}

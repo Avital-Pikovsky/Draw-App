@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <title>Avital's Draw App</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}"/> 
+    </head>
+    <body>
+        <div class="custom-select" style="width:200px;">
+            <select id = "color">
+              <option value="black">black</option>
+              <option value="red">red</option>
+              <option value="blue">blue</option>
+              <option value="green">green</option>
+              <option value="yellow">yellow</option>
+              <option value="pink">pink</option>
+              <option value="pink">white</option>
+            </select>
+
+            <select id = "radius"></select>
+            <button class="button" onclick = erase()>Erase</button>
+        </div>
+        <svg id="svg" style ="width:100%; height:800px;"></svg> 
+    </body>
+    
+    <script>
+        function genOptions() {
+            var mySelect = document.getElementById('radius')
+            for(let i = 1; i <= 20; i++) {
+                var newOption = document.createElement('option')
+                newOption.value = i
+                newOption.innerText = i
+                mySelect.appendChild(newOption)
+            }
+        }
+        window.onload = genOptions
+
+        function erase(){
+            d3.selectAll("svg > *").remove();
+        }
+
+        const svg = d3.select('#svg');
+        let drawing = false;
+        let previous_coords = null;
+
+        function draw(){
+            if(!drawing)
+                return;
+        
+            const coords = d3.mouse(this);
+
+            svg.append('circle')
+                .attr('cx', coords[0])
+                .attr('cy', coords[1])
+                .attr('r', document.getElementById("radius").value)
+                .style('fill', document.getElementById("color").value);
+
+            svg.append('circle')
+                .attr('cx', previous_coords[0])
+                .attr('cy', previous_coords[1])
+                .attr('r', document.getElementById("radius").value)
+                .style('fill', document.getElementById("color").value);
+
+            svg.append('line')
+                .attr('x1', previous_coords[0])
+                .attr('y1', previous_coords[1])
+                .attr('x2', coords[0])
+                .attr('y2', coords[1])
+                .style('stroke', document.getElementById("color").value)
+                .style('stroke-width', document.getElementById("radius").value*2);
+
+            previous_coords = coords;
+
+        };
+        svg.on('mousemove', draw);
+
+        svg.on('mousedown', function() {
+            previous_coords = d3.mouse(this)
+            drawing = true;
+        });
+
+        svg.on('mouseup', () => {
+            drawing = false;
+        });
+
+    </script>
+
+</html>
