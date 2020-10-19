@@ -1,7 +1,7 @@
 # Draw-App
 CS50 Beyond 2019 - Drawing in JavaScript with d3 library
 
-[Draw now! :pencil2:](https://avital-draw-app.herokuapp.com/)
+[Draw now! :pencil2:](https://avital-pikovsky.github.io/Draw-App/)
 
 
 
